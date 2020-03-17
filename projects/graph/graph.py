@@ -35,7 +35,6 @@ class Graph:
         Print each vertex in breadth-first order
         beginning from starting_vertex.
         """
-       
         q = Queue()
         q.enqueue(starting_vertex)
         visited = set()
@@ -63,15 +62,30 @@ class Graph:
                 print(v)
                 for next_vertex in self.vertices[v]:
                     s.push(next_vertex)
+    def dft_recursive_h(self, v, visited, stack):
+        if stack.size() > 0:
+            v = stack.pop()
+            if v not in visited:
+                visited.add(v)
+                print(v)
+                for next_vertex in self.vertices[v]:
+                    stack.push(next_vertex)
+            self.dft_recursive_h(v, visited, stack)
+        else:
+            return False
 
-    def dft_recursive(self, starting_vertex):
+    def dft_recursive(self, starting_vertex,visited = set()):
         """
         Print each vertex in depth-first order
         beginning from starting_vertex.
 
         This should be done using recursion.
         """
-        pass  # TODO
+        s = Stack()
+        s.push(starting_vertex)
+        visited = set()
+        self.dft_recursive_h(starting_vertex,visited,s)
+        return visited
 
     def bfs(self, starting_vertex, destination_vertex):
         """
