@@ -43,7 +43,7 @@ class Graph:
         beginning from starting_vertex.
         """
         s = Stack()
-        s.push(starting_vertex_id)
+        s.push(starting_vertex)
         visited = set()
         while s.size() > 0:
             v = s.pop()
