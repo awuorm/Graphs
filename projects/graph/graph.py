@@ -98,9 +98,6 @@ class Graph:
         queue = Queue()
         queue.enqueue([starting_vertex])
 
-        if starting_vertex == destination_vertex:
-            return [starting_vertex, destination_vertex]
-
         while queue.size() > 0:
             visited = set()
             path = queue.dequeue()
@@ -108,7 +105,6 @@ class Graph:
             if vertex not in visited:
                 if vertex == destination_vertex:
                     return path
-
                 neighbors = self.get_neighbors(vertex)
                 for neighbor in neighbors:
                     new_path = list(path)
@@ -128,8 +124,8 @@ class Graph:
         stack = Stack()
         stack.push([starting_vertex])
 
-        if starting_vertex == destination_vertex:
-            return [starting_vertex, destination_vertex]
+        # if starting_vertex == destination_vertex:
+        #     return [starting_vertex, destination_vertex]
         while stack.size() > 0:
             path = stack.pop()
             vertex = path[-1]
@@ -157,6 +153,9 @@ class Graph:
         if path is None:
             path = [starting_vertex]
         if starting_vertex == destination_vertex:
+            print("starting",starting_vertex)
+            print("desti",destination_vertex)
+
             return path
         neighbors = self.get_neighbors(starting_vertex)
         for neighbor in neighbors - set(path):
