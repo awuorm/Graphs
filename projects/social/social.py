@@ -1,3 +1,4 @@
+import random
 class User:
     def __init__(self, name):
         self.name = name
@@ -45,8 +46,23 @@ class SocialGraph:
         # !!!! IMPLEMENT ME
 
         # Add users
+        for users in range(num_users):
+            self.add_user(users)
 
         # Create friendships
+        #find possible friendships
+        possible_friendships = []
+        for user in range(1,self.last_id + 1):
+            for friend in range(user + 1, self.last_id + 1):
+                possible_friendship = (user,friend)
+                possible_friendships.append(possible_friendship)
+        #shuffle randomly
+        random.shuffle(possible_friendships)
+        #add friendship
+        total_friendships = num_users * avg_friendships // 2
+        random_friendships = possible_friendships[:total_friendships]
+        for friendship in random_friendships:
+            self.add_friendship(friendship[0],friendship[1])
 
     def get_all_social_paths(self, user_id):
         """
